@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -23,23 +22,16 @@
         }
         .rating {
             display: flex;
-            flex-direction: row-reverse;
-            justify-content: center;
-            transition: color 0.2s;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
         }
         .rating input {
-            display: none;
+            width: 100%;
         }
-        .rating label {
-            font-size: 2em;
-            color: #ccc;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .rating input:checked ~ label,
-        .rating label:hover,
-        .rating label:hover ~ label {
-            color: #f5b301;
+        .rating span {
+            font-size: 1.2em;
+            margin-top: 10px;
         }
         .optional, .comment {
             margin-bottom: 20px;
@@ -74,16 +66,9 @@
         <h1>Avaliação do Atendimento – Lucas Lima Campos</h1>
         <form id="evaluationForm">
             <div class="rating">
-                <label for="star5">★</label>
-                <input type="radio" id="star5" name="rating" value="5">
-                <label for="star4">★</label>
-                <input type="radio" id="star4" name="rating" value="4">
-                <label for="star3">★</label>
-                <input type="radio" id="star3" name="rating" value="3">
-                <label for="star2">★</label>
-                <input type="radio" id="star2" name="rating" value="2">
-                <label for="star1">★</label>
-                <input type="radio" id="star1" name="rating" value="1">
+                <label for="rating">Nota:</label>
+                <input type="range" id="rating" name="rating" min="1" max="5" value="3" oninput="this.nextElementSibling.value = this.value">
+                <span>3</span>
             </div>
             <div class="optional">
                 <label for="nome">Seu nome (opcional):</label>
@@ -98,20 +83,23 @@
     </div>
     <script>
         function sendEmail() {
-            const rating = document.querySelector('input[name="rating"]:checked')?.value || '';
-            if (!rating) {
-                alert("Por favor, selecione uma nota antes de enviar.");
-                return;
-            }
+            const rating = document.getElementById('rating').value;
             const nome = document.getElementById('nome').value;
             const comentario = document.getElementById('comentario').value;
             const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
-            let body = "Olá!%0D%0A%0D%0ARecebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.%0D%0A%0D%0A";
-            body += "Nota: " + rating + "%0D%0A";
-            if (nome) body += "Nome: " + nome + "%0D%0A";
-            if (comentario) body += "Comentário: " + comentario + "%0D%0A";
-            body += "%0D%0AAgradecemos por dedicar um momento para compartilhar sua opinião. Seu feedback é muito importante para melhorarmos continuamente nosso suporte.%0D%0A%0D%0AAtenciosamente,%0D%0AEquipe de Suporte Técnico";
-            const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com&subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+            let body = "Olá!\n\n";
+            body += "Recebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.\n\n";
+            body += "Nota: " + rating + "\n";
+            if (nome) body += "Nome: " + nome + "\n";
+            if (comentario) body += "Comentário: " + comentario + "\n";
+            body += "\nAgradecemos por dedicar um momento para compartilhar sua opinião. ";
+            body += "Seu feedback é muito importante para melhorarmos continuamente nosso suporte.\n\n";
+            body += "Atenciosamente,\nEquipe de Suporte Técnico";
+
+            const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com"
+                + "&subject=" + encodeURIComponent(subject)
+                + "&body=" + encodeURIComponent(body);
+
             window.location.href = mailto_link;
         }
     </script>
