@@ -21,41 +21,26 @@
         }
         .rating {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
+            flex-direction: row-reverse;
+            justify-content: center;
+                       transition: color 0.2s;
         }
-        .rating input {
-            display: none;
-        }
-        .rating label {
-            font-size: 2em;
-            color: #ccc;
-            cursor: pointer;
-        }
-        .rating input:checked ~ label            color: #f5b301;
-        }
+        .rating input:checked ~ label,
         .rating label:hover,
         .rating label:hover ~ label {
             color: #f5b301;
         }
-        .comment {
+        .optional, .comment {
             margin-bottom: 20px;
+        }
+        .optional input, .comment textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         .comment textarea {
-            width: 100%;
             height: 100px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .optional {
-            margin-bottom: 20px;
-        }
-        .optional input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
         .submit-btn {
             display: block;
@@ -97,23 +82,18 @@
     </div>
     <script>
         function sendEmail() {
-            var rating = document.querySelector('input[name="rating"]:checked').value;
-            var nome = document.getElementById('nome').value;
-            var comentario = document.getElementById('comentario').value;
-            var subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
-            var body = "Olá!%0D%0A%0D%0ARecebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.%0D%0A%0D%0A";
+            const rating = document.querySelector('input[name="rating"]:checked')?.value || '';
+            const nome = document.getElementById('nome').value;
+            const comentario = document.getElementById('comentario').value;
+            const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
+            let body = "Olá!%0D%0A%0D%0ARecebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.%0D%0A%0D%0A";
             body += "Nota: " + rating + "%0D%0A";
-            if (nome) {
-                body += "Nome: " + nome + "%0D%0A";
-            }
-            if (comentario) {
-                body += "Comentário: " + comentario + "%0D%0A";
-            }
+            if (nome) body += "Nome: " + nome + "%0D%0A";
+            if (comentario) body += "Comentário: " + comentario + "%0D%0A";
             body += "%0D%0AAgradecemos por dedicar um momento para compartilhar sua opinião. Seu feedback é muito importante para melhorarmos continuamente nosso suporte.%0D%0A%0D%0AAtenciosamente,%0D%0AEquipe de Suporte Técnico";
-            var mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com&subject=" + subject + "&body=" + body;
+            const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com&subject=" + subject + "&body=" + body;
             window.location.href = mailto_link;
         }
     </script>
 </body>
 </html>
-
