@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,14 +15,13 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
         }
         .rating {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
         .rating input {
@@ -34,29 +32,32 @@
             color: #ccc;
             cursor: pointer;
         }
-        .rating input:checked ~ label {
-            color: gold;
+        .rating input:checked ~ label            color: #f5b301;
         }
         .rating label:hover,
         .rating label:hover ~ label {
-            color: gold;
+            color: #f5b301;
         }
-        textarea {
+        .comment {
+            margin-bottom: 20px;
+        }
+        .comment textarea {
             width: 100%;
             height: 100px;
-            margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        input[type="text"] {
+        .optional {
+            margin-bottom: 20px;
+        }
+        .optional input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        button {
+        .submit-btn {
             display: block;
             width: 100%;
             padding: 10px;
@@ -65,8 +66,9 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 1em;
         }
-        button:hover {
+        .submit-btn:hover {
             background-color: #45a049;
         }
     </style>
@@ -82,17 +84,22 @@
                 <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
                 <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
             </div>
-            <input type="text" name="nome" placeholder="Seu nome (opcional)">
-            <textarea name="comentario" placeholder="Gostaria de deixar algum comentário ou sugestão?"></textarea>
-            <button type="button" onclick="sendEmail()">Enviar Avaliação</button>
+            <div class="optional">
+                <label for="nome">Seu nome (opcional):</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome">
+            </div>
+            <div class="comment">
+                <label for="comentario">Gostaria de deixar algum comentário ou sugestão?</label>
+                <textarea id="comentario" name="comentario" placeholder="Seu comentário"></textarea>
+            </div>
+            <button type="button" class="submit-btn" onclick="sendEmail()">Enviar Avaliação</button>
         </form>
     </div>
     <script>
         function sendEmail() {
-            var form = document.getElementById('evaluationForm');
-            var rating = form.rating.value;
-            var nome = form.nome.value;
-            var comentario = form.comentario.value;
+            var rating = document.querySelector('input[name="rating"]:checked').value;
+            var nome = document.getElementById('nome').value;
+            var comentario = document.getElementById('comentario').value;
             var subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
             var body = "Olá!%0D%0A%0D%0ARecebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.%0D%0A%0D%0A";
             body += "Nota: " + rating + "%0D%0A";
@@ -109,3 +116,4 @@
     </script>
 </body>
 </html>
+
