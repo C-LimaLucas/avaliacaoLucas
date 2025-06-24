@@ -1,101 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliação do Atendimento – Lucas Lima Campos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-        }
-        h1 {
-            text-align: center;
-        }
-        .rating {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            transition: color 0.2s;
-        }
-        .rating input {
-            display: none;
-        }
-        .rating label {
-            font-size: 2em;
-            color: #ccc;
-                       transition: color 0.2s;
-        }
-        .rating input:checked ~ label,
-        .rating label:hover,
-        .rating label:hover ~ label {
-            color: #f5b301;
-        }
-        .optional, .comment {
-            margin-bottom: 20px;
-        }
-        .optional input, .comment textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .comment textarea {
-            height: 100px;
-        }
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
-        .submit-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+<html lang="pt-BR-content: center;
+      direction: rtl; /* Inverte visualmente, mas mantém a ordem lógica */
+    }
+    .rating input {
+      display: none;
+    }
+    .rating label {
+      font-size: 2em;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .rating input:checked ~ label,
+    .rating label:hover,
+    .rating label:hover ~ label {
+      color: #f5b301;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Avaliação do Atendimento – Lucas Lima Campos</h1>
-        <form id="evaluationForm">
-            <div class="rating">
-                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-            </div>
-            <div class="optional">
-                <label for="nome">Seu nome (opcional):</label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome">
-            </div>
-            <div class="comment">
-                <label for="comentario">Gostaria de deixar algum comentário ou sugestão?</label>
-                <textarea id="comentario" name="comentario" placeholder="Seu comentário"></textarea>
-            </div>
-            <button type="button" class="submit-btn" onclick="sendEmail()">Enviar Avaliação</button>
-        </form>
-    </div>
-    <script>
-        function sendEmail() {
-            const rating = document.querySelector('input[name="rating"]:checked')?.value || '';
-            if (!rating) {
-                alert("Por favor, selecione uma nota antes de enviar.");
-                return;
-            }
-            const nome = document.getElementById('nome').value;
-            const comentario = document.getElementById('comentario').value;
-            const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
-            let body
+  <div class="container">
+    <h1>Avaliação do Atendimento – Lucas Lima Campos</h1>
+    <form id="evaluationForm">
+      <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5" />
+        <label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4" />
+        <label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3" />
+        <label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2" />
+        <label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1" />
+        <label for="star1">★</label>
+      </div>
+      <div class="optional">
+        <label for="nome">Seu nome (opcional):</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome" />
+      </div>
+      <div class="comment">
+        <label for="comentario">Gostaria de deixar algum comentário ou sugestão?</label>
+        <textarea id="comentario" name="comentario" placeholder="Seu comentário"></textarea>
+      </div>
+      <button type="button" class="submit-btn" onclick="sendEmail()">Enviar Avaliação</button>
+    </form>
+  </div>
+
+  <script>
+    function sendEmail() {
+      const rating = document.querySelector('input[name="rating"]:checked')?.value || '';
+      if (!rating) {
+        alert("Por favor, selecione uma nota antes de enviar.");
+        return;
+      }
+      const nome = document.getElementById('nome').value;
+      const comentario = document.getElementById('comentario').value;
+      const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
+      let body = "Olá!%0D%0A%0D%0ARecebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.%0D%0A%0D%0A";
+      body += "Nota: " + rating + "%0D%0A";
+      if (nome) body += "Nome: " + nome + "%0D%0A";
+      if (comentario) body += "Comentário: " + comentario + "%0D%0A";
+      body += "%0D%0AAgradecemos por dedicar um momento para compartilhar sua opinião. Seu feedback é muito importante para melhorarmos continuamente nosso suporte.%0D%0A%0D%0AAtenciosamente,%0D%0AEquipe de Suporte Técnico";
+      const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com&subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      window.location.href = mailto_link;
+    }
+  </script>
+</body>
+</html>
