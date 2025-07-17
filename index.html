@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -79,18 +80,17 @@
             const nome = document.getElementById('nome').value;
             const comentario = document.getElementById('comentario').value;
             const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
-            let body = "Olá!\n\n";
-            body += "Recebemos uma nova avaliação referente ao atendimento prestado por Lucas Lima Campos.\n\n";
-            body += "Nota: " + rating + "\n";
-            if (nome) body += "Nome: " + nome + "\n";
-            if (comentario) body += "Comentário: " + comentario + "\n";
-            body += "\nAgradecemos por dedicar um momento para compartilhar sua opinião. ";
-            body += "Seu feedback é muito importante para melhorarmos continuamente nosso suporte.\n\n";
-            body += "Atenciosamente,\nEquipe de Suporte Técnico";
+            let body = "Olá, Lucas!%0D%0A%0D%0A";
+            body += "Você recebeu uma nova avaliação referente a um atendimento realizado. Veja os detalhes abaixo:%0D%0A%0D%0A";
+            body += "Nota: " + rating + "%0D%0A";
+            if (nome) body += "Nome do avaliador: " + nome + "%0D%0A";
+            if (comentario) body += "Comentário: " + comentario + "%0D%0A";
+            body += "%0D%0AParabéns pelo ótimo trabalho! Continue assim — seu empenho faz a diferença no suporte técnico.%0D%0A%0D%0A";
+            body += "Atenciosamente,%0D%0ASistema de Avaliação de Atendimento - Suporte Técnico";
 
             const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com"
                 + "&subject=" + encodeURIComponent(subject)
-                + "&body=" + encodeURIComponent(body);
+                + "&body=" + body;
 
             window.location.href = mailto_link;
         }
