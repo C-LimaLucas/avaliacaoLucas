@@ -81,10 +81,10 @@
             const comentario = document.getElementById('comentario').value;
             const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
             let body = "Olá, Lucas!%0D%0A";
-            body += "Obrigado pelo seu atendimento! Você recebeu uma nova avaliação. Veja os detalhes abaixo:%0D%0A%0D%0A";
+            body += "Obrigado pelo seu atendimento! Você recebeu uma nova avaliação. Veja os detalhes abaixo:%0D%0A%0D%0A%0D%0A";
             body += "Nota: " + rating + "%0D%0A";
-            if (nome) body += "Nome do avaliador: " + nome + "%0D%0A";
-            if (comentario) body += "Comentário: " + comentario + "%0D%0A%0D%0A";
+            body += "Nome do avaliador: " + nome + "%0D%0A";
+            body += "Comentário: " + comentario + "%0D%0A%0D%0A";
             
             const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com"
                 + "&subject=" + encodeURIComponent(subject)
