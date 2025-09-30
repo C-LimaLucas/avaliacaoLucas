@@ -79,14 +79,14 @@
             const rating = document.getElementById('rating').value;
             const nome = document.getElementById('nome').value;
             const comentario = document.getElementById('comentario').value;
-            const subject = "Novo feedback recebido – Avaliação de atendimento de Lucas Lima Campos";
+            const subject = "Automação para avaliação de atendimento de Lucas Lima Campos";
             let body = "Olá, Lucas!%0D%0A";
-            body += "Obrigado pelo seu atendimento! Você recebeu uma nova avaliação. Veja os detalhes abaixo:%0D%0A%0D%0A%0D%0A";
+            body += "Você recebeu uma nova avaliação. Veja seu feedback abaixo:%0D%0A%0D%0A%0D%0A";
             body += "Nota: " + rating + "%0D%0A";
             body += "Nome do avaliador: " + nome + "%0D%0A";
             body += "Comentário: " + comentario + "%0D%0A%0D%0A";
             
-            const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com"
+            const mailto_link = "mailto:camposlucaslima@johndeere.com?cc=ReffattiAlonsoR@JohnDeere.com; CoutoThais@JohnDeere.com; OliveiraMarcosS@JohnDeere.com"
                 + "&subject=" + encodeURIComponent(subject)
                 + "&body=" + body;
 
